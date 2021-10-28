@@ -1,0 +1,40 @@
+<%= form_with model: budget do |form| %>
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="mb-3">
+                <h3>
+                    <%= form.label :cliente, {class:"form-label"}%> <br>
+                </h3>
+                <%= form.text_field :cliente, {class: "form-control", placeholder:"Nombre del cliente"}%>
+                <%@budget.errors.full_messages_for(:cliente).each do |message|%>
+                    <div>
+                        <%= message%>
+                    </div>
+                <% end%>   
+            </div>
+            <div class="mb-3">
+                <h3>
+                    <%= form.label :vehiculo, {class:"form-label"}%>
+                </h3>
+                <%= form.text_field :vehiculo, {class:"form-control", placeholder:"Marca y Modelo del vehiculo"}%>
+                <%@budget.errors.full_messages_for(:cliente).each do |message|%>
+                    <div>
+                        <%= message%>
+                    </div>
+                <% end%>   
+            </div>
+            <div class="mb-3">
+                <%= form.label :status, 'Permiso'%>
+                <%= form.select :status, ['public','private','archived'], selected:'public'%> <br>   
+            </div>
+            <div class="d-grip">
+                <%= form.submit "Enviar", {class:"btn btn-warning col-12"}%>
+            </div>                  
+        </div>      
+    </div>
+<% end %>
+<div class="d-grip">
+    <%= link_to "Salir", '/', {class:"btn btn-danger col-3"}%>
+</div>
+

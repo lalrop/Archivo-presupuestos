@@ -1,0 +1,42 @@
+<div class="container py-4 my-3 border text-center">
+  <h1> Archivo</h1>
+
+  <table class="table my-5">
+    <thead>
+      <tr>
+        <th scope="col">Cliente</th>
+        <th scope="col">Vehiculo</th>
+        <th scope="col">Fecha</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @budgets.each do |budget| %>
+        <% unless budget.archived? %>
+          <tr>
+            <th scope="row">
+                <%= budget.cliente%>
+            </th>
+            <td>
+                <%= budget.vehiculo%>
+            </td>
+            <td>
+                <%= budget.created_at.to_date%>
+            </td>
+            <td>
+              <div class="row">
+                <%= link_to "Ver", budget, {class:"btn btn-primary col-6"}%>
+                  <%= link_to "Eliminar", budget, {action: "delete", class:"btn btn-danger col-6"}%>
+              </div>
+            </td>
+          </tr>  
+        <% end %>
+      <% end %>
+
+
+    
+    </tbody>
+  </table>
+        <%= link_to "Nuevo Presupuesto", new_budget_path, {class:"btn btn-warning"}%>
+
+</div>

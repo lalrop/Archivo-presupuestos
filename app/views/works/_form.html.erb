@@ -1,0 +1,25 @@
+<%=form_with model: [@budget, @budget.works.build] do |form|%>
+     <div class="card">
+        <div class="card-body">
+            <h5 class="class-title">
+                Agregar nuevo trabajo
+            </h5>
+            <%=form.label :trabajo, "Trabajo", {class:"form-label"}%>
+            <%=form.text_field :trabajo ,{class:"form-control"}%>
+            <p>
+                <%=form.label :precio, "Precio", {class:"form-label"}%>
+                <%=form.number_field :precio, {class:"form-control"} %>
+            </p>
+            <p>
+                <%=form.label :status, "Permiso", {class:"form-label"}%>
+                <%=form.select :status,['public','private','archived'], selected:'public' %>
+            </p>
+
+            <div>
+            <%= form.submit "Agregar" , {class:"btn btn-warning"}%>
+            </div>
+        </div>
+        
+     </div>
+
+<%end%>

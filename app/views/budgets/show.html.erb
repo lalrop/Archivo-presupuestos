@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-md-8 col-sm-12 my-3">
+        <div class="text-center">
+            <h1>
+                <%= @budget.cliente%>
+            </h1>
+            <h2>
+                <%= @budget.vehiculo%>
+            </h2>
+            <p>
+                <%= @budget.created_at.to_date%>
+            </p>
+            <p>
+                <%= link_to "Editar", edit_budget_path(@budget)%>
+            </p>
+        </div>
+        <table class="table table-striped table-responsive">
+            <thead>
+                <tr>
+                    <th scope="col" class="col-9"> Trabajo </th>
+                    <th scope="col" class="col-3"> Valor</th>   
+                </tr>
+            </thead>
+
+            <tbody>
+                <%@budget.works.each do |work|%>
+                <tr>
+                    <td>
+                    <%= work.trabajo%>
+                    </td>
+                    <td>
+                    <%= number_to_currency(work.precio, precision:0)%>
+                    <%= link_to 'Eliminar', [work.budget, work],
+                        {method: :delete,
+                        data: {confirm:"Estas seguro?"},
+                        class:"btn btn-danger"}%>
+                    </td>
+                    
+                </tr>
+                <%end%>
+            </tbody>   
+            <tfoot>
+                <tr>
+                    <th scope="row">
+                        Total
+                    </td>
+                    <td>
+                        <%=number_to_currency(@budget.works.sum(:precio), precision: 0)%>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Iva
+                    </td>
+                    <td>
+                        <%=number_to_currency(@budget.works.sum(:precio)-(@budget.works.sum(:precio)/1.19), precision:0)%>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">
+                        Total Neto
+                    </td>
+                    <td>
+                        <%=number_to_currency(@budget.works.sum(:precio)*1.19, precision:0)%>
+                    </td>
+                </tr>
+            </tfoot> 
+            
+        </table>
+    </div>
+
+    <div class="col-md-4 col-sm-12 my-3">
+        <%= render 'works/form'%>
+        <%= link_to "Ir al Archivo", '/', {class:"btn btn-primary col-12 my-3"}%>        
+        <%= link_to "Vista Previa", {action: "toprint"}, id:@budget, class:"btn btn-success col-12 my-3"%>
+        
+
+        <%= link_to "Eliminar Presupuesto", budget_path(@budget), method: :delete, data:{confirm: "Estas seguro?"}, class:"btn btn-danger col-12" %>
+        </div>
+
+    </div>
+    
+</div>
+
+
