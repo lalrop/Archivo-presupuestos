@@ -1,6 +1,7 @@
 class BudgetsController < ApplicationController
-     
+
   def index
+    http_basic_authenticate_or_request_with name: "oruga37", password: "luis1963"
     @budgets = Budget.all 
   end
 
