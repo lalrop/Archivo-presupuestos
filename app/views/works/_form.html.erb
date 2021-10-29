@@ -10,7 +10,7 @@
                 <%=form.label :precio, "Precio", {class:"form-label"}%>
                 <%=form.number_field :precio, {class:"form-control"} %>
             </p>
-            <p>
+            <p class="d-none">
                 <%=form.label :status, "Permiso", {class:"form-label"}%>
                 <%=form.select :status,['public','private','archived'], selected:'public' %>
             </p>
