@@ -12,25 +12,38 @@
     </thead>
     <tbody>
       <% @budgets.each do |budget| %>
-        <% unless budget.archived? %>
-          <tr>
-            <th scope="row">
-                <%= budget.cliente%>
-            </th>
-            <td>
-                <%= budget.vehiculo%>
-            </td>
-            <td>
-                <%= budget.created_at.to_date%>
-            </td>
-            <td>
-              <div class="row">
-                <%= link_to "Ver", budget, {class:"btn btn-primary col-6"}%>
-                  <%= link_to "Eliminar", budget_path(budget),method: "delete",  class:"btn btn-danger col-6"%>
+        <tr>
+          <th scope="row">
+              <%= budget.cliente%>
+          </th>
+          <td>
+              <%= budget.vehiculo%>
+          </td>
+          <td>
+              <%= budget.created_at.to_date%>
+          </td>
+          <td>
+            <div class="row">
+              <div class="col-md-5 d-none d-sm-block">
+                 <%= link_to "Ver", budget, {class:"btn btn-primary col-md-12"}%>
               </div>
-            </td>
-          </tr>  
-        <% end %>
+              <div class="col-md-5 d-none d-sm-block">
+                 <%= link_to "Eliminar", budget_path(budget),method: "delete",  class:"btn btn-danger col-md-12 col-xs-0"%>
+              </div>
+            </div>
+            <%# BOTONES EN MODO RESPONSIVO %>
+            <div class="row d-block d-sm-none">
+              <div class="d-grid col-6 px-0">
+                <span>
+                  <%= link_to "Ver", budget, {class:"btn btn-primary btn-sm my-1 col-md-12 col-xs-0"}%>  
+                </span>
+                <span>
+                  <%= link_to "Eliminar", budget_path(budget),method: "delete",  class:"btn btn-danger btn-sm col-md-12 "%>
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>  
       <% end %>
 
 
